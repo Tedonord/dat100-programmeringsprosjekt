@@ -1,10 +1,11 @@
 package no.hvl.dat100.javel.oppgave1;
 
 import no.hvl.dat100.javel.oppgave2.MonthlyPower;
+import java.lang.reflect.Method;
 
 public class DayMain {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
         // test data
         double[] powerusage_day = DayPowerData.powerusage_day;
@@ -23,6 +24,16 @@ public class DayMain {
          Remember to teste the methods as you implement them
          Remember to also to check that you get the expected results
          */
+
+        DailyPower.printPowerPrices(powerprices_day);
+        DailyPower.printPowerUsage(powerusage_day);
+
+        double totalpowerusage = DailyPower.computePowerUsage(powerusage_day);
+        System.out.println(totalpowerusage + " kWh");
+        
+        double totalspotprice = DailyPower.computeSpotPrice(powerusage_day, powerprices_day);
+        System.out.printf("%.2f NOK\n",totalspotprice);
+
 
     }
 }
