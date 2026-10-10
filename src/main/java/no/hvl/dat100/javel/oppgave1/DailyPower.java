@@ -7,7 +7,7 @@ public class DailyPower {
         for (int i = 0; i < (prices.length);i++){
             System.out.printf("%.2f NOK ",prices[i]);
         }
-
+        System.out.println();
     }
 
     // b) print power usage during a day
@@ -15,7 +15,7 @@ public class DailyPower {
         for (int i = 0; i < (usage.length);i++){
             System.out.printf("%.2f kWh ",usage[i]);
         }
-        
+        System.out.println();
 
     }
 
@@ -47,6 +47,7 @@ public class DailyPower {
     private static final double THRESHOLD = 0.9375;
     private static final double PERCENTAGE = 0.9;
 
+    // her lurer jeg på om det skal stå public, tror ikke vi har lært å bruke private metoder utenfor classen
     private static double getSupport(double usage, double price) {
 
         double support = 0;
@@ -55,7 +56,7 @@ public class DailyPower {
             overthres = price-THRESHOLD;
             support = overthres*PERCENTAGE;
         }
-
+        support *= usage;
         return support;
     }
 
@@ -64,7 +65,9 @@ public class DailyPower {
 
         double support = 0;
 
-        // TODO
+        for (int i = 0; i < usage.length;i++){
+            support += getSupport(usage[i], prices[i]);
+        }
 
         return support;
     }
@@ -76,7 +79,9 @@ public class DailyPower {
 
         double price = 0;
 
-        // TODO
+        for (int i = 0; i < usage.length;i++){
+            price += usage[i]*0.5;
+        }
 
         return price;
     }
@@ -86,7 +91,11 @@ public class DailyPower {
 
         double temp_max = 0;
 
-        // TODO
+        for (int i = 0; i < usage.length;i++){
+            if (usage[i]>temp_max){
+                temp_max = usage[i];
+            }
+        }
 
         return temp_max;
     }
@@ -94,8 +103,9 @@ public class DailyPower {
     public static double findAvgPower(double[] usage) {
 
         double average = 0;
-
-        // TODO
+        
+        double sum = computePowerUsage(usage);
+        average = sum/24;
 
         return average;
     }

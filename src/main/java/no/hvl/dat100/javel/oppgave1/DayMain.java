@@ -33,7 +33,22 @@ public class DayMain {
         
         double totalspotprice = DailyPower.computeSpotPrice(powerusage_day, powerprices_day);
         System.out.printf("%.2f NOK\n",totalspotprice);
+        /*
+        double getsupport = DailyPower.getSupport(powerusage_day[8], powerprices_day[8]);
+        System.out.printf("%.2f NOK\n",getsupport);
+        */
+        double computesupp = DailyPower.computePowerSupport(powerusage_day, powerprices_day);
+        System.out.printf("%.2f NOK\n", computesupp);
 
+        double norgespris = DailyPower.computeNorgesPrice(powerusage_day);
+        System.out.printf("%.2f NOK\n", norgespris);
+
+        double maks = DailyPower.findPeakUsage(powerusage_day);
+        System.out.printf("%.2f kWh\n", maks);
+
+        double average = DailyPower.findAvgPower(powerusage_day);
+        System.out.printf("%.2f kWh\n", average);
+        
 
     }
 }
