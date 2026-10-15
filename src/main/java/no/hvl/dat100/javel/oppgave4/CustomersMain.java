@@ -12,12 +12,24 @@ public class CustomersMain {
         System.out.println("==============");
         System.out.println();
 
-        /*
-        TODO
+        Customer jakob = new Customer("Jakob", "email", 69, PowerAgreementType.NORGESPRICE);
+        Customer nils = new Customer("Nils", "nilsemail", 67, PowerAgreementType.NORGESPRICE);
+        Customers obj = new Customers(5);
 
-         Write code that uses and tests the methods implemented in the Customers class
+        int nonnull= obj.countNonNull();
+        System.out.println(nonnull);
 
-        */
+        System.out.println(obj.addCustomer(jakob));
+        System.out.println(obj.addCustomer(nils));
+        nonnull= obj.countNonNull();
+        System.out.println(nonnull);
 
+        obj.removeCustomer(67);
+
+        Customer[] liste = obj.getCustomers();
+        
+        for (Customer customer : liste){
+            System.out.println(customer.toString());
+        }
     }
 }

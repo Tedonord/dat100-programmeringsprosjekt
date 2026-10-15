@@ -39,7 +39,7 @@ public class Customer {
     public void setPAT(PowerAgreementType agreement){
         this.agreement = agreement;
     }
-    // TODO - toString method
+    
     public String toString(){
         String navn = getName();
         String email = getEmail();

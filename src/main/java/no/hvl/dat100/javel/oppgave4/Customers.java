@@ -8,19 +8,17 @@ public class Customers {
 
     // a) Complete constructor
     public Customers(int size) {
-
-        // TODO
-
+        customers = new Customer[size];
     }
 
     // b) count number of non-null references
     public int countNonNull() {
-
-
         int count = 0;
 
-        // TODO
-
+        for (Customer customer : customers)
+            if (customer != null){
+                count +=1;
+            }
         return count;
     }
 
@@ -30,7 +28,14 @@ public class Customers {
         boolean funnet = false;
         Customer c = null;
 
-        // TODO
+        for (Customer customer : customers){
+            if (customer != null){
+                if (customer.getCustomerid()==customer_id){
+                    funnet = true;
+                    return customer;
+                }
+            }
+        }
 
         return c;
     }
@@ -40,7 +45,12 @@ public class Customers {
 
         boolean inserted = false;
 
-        // TODO
+        for (int i = 0; i < customers.length; i++) {
+            if (customers[i] == null) {
+                customers[i] = c;
+                return true;
+            }
+        }
 
         return inserted;
     }
@@ -50,8 +60,16 @@ public class Customers {
 
         boolean deleted = false;
         Customer c = null;
-
-        // TODO
+        
+        for (int i = 0; i < customers.length;i++){
+            if (customers[i] != null){
+                if (customers[i].getCustomerid()==customer_id){
+                    customers[i] = null;
+                    deleted = true;
+                    return customers[i];
+                }
+            }
+        }
 
         return c;
     }
@@ -61,7 +79,17 @@ public class Customers {
 
         Customer[] customers = null;
 
-        // TODO
+        int antall = countNonNull();
+        customers = new Customer[antall];
+
+        int i = 0;
+        for (Customer customer : this.customers){
+            if (customer != null){
+                customers[i] = customer;
+                i++;
+            }
+        }
+
 
         return customers;
     }
