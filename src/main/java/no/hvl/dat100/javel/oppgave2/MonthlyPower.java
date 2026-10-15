@@ -7,14 +7,26 @@ public class MonthlyPower {
     // a) print power usage for a month
     public static void print_PowerUsage(double[][] usage) {
 
-        // TODO
+        for (int i = 0; i < usage.length;i++){
+            System.out.print("Dag " + (i+1) + ": ");
+            for (int j = 0; j < usage[i].length; j++){
+                System.out.printf("%.2f kWh ", usage[i][j]);
+            }
+            System.out.println();
+        }
 
     }
 
     // b) print power prices for a month
     public static void print_PowerPrices(double[][] prices) {
 
-        // TODO
+        for (int i = 0; i < prices.length;i++){
+            System.out.print("Dag " + (i+1) + ": ");
+            for (int j = 0; j < prices[i].length; j++){
+                System.out.printf("%.2f NOK/kWh ", prices[i][j]);
+            }
+            System.out.println();
+        }
 
     }
 
@@ -23,7 +35,11 @@ public class MonthlyPower {
 
         double sum = 0;
 
-        // TODO
+        for (int i = 0; i < usage.length;i++){
+            for (int j = 0; j < usage[i].length; j++){
+                sum += usage[i][j];
+            }
+        }
 
         return sum;
     }
@@ -33,9 +49,19 @@ public class MonthlyPower {
 
         boolean exceeded = false;
         double usage = 0;
-
-        // TODO
-
+        int i = 0;
+        while (i < powerusage.length){
+            int j = 0;
+            while(j < powerusage[i].length){
+                usage += powerusage[i][j];
+                if (usage > threshold){
+                    return true;
+                }
+                j++;
+            }
+            i++;
+        }
+    
         return exceeded;
     }
 
@@ -44,7 +70,11 @@ public class MonthlyPower {
 
         double price = 0;
 
-        // TODO
+        for (int i = 0; i < usage.length;i++){
+            for (int j = 0; j < usage[i].length; j++){
+                price += usage[i][j]*prices[i][j];
+            }
+        }
 
         return price;
     }
@@ -53,8 +83,16 @@ public class MonthlyPower {
     public static double computePowerSupport(double[][] usage, double[][] prices) {
 
         double support = 0;
+        final double grense = 0.9375;
+        final double prosent = 0.9;
 
-        // TODO
+        for (int i = 0; i < usage.length;i++){
+            for (int j = 0; j < usage[i].length;j++){
+                if (prices[i][j] > grense){
+                    support += usage[i][j]*((prices[i][j]-grense)*prosent);
+                }
+            }
+        }
 
         return support;
     }
@@ -63,9 +101,13 @@ public class MonthlyPower {
     public static double computeNorgesPrice(double[][] usage) {
 
         double price = 0;
-
-        // TODO
-
+        double forbruk = 0;
+        for (double[] inniusage : usage){
+            for (double verdi : inniusage){
+                forbruk += verdi;
+            }
+        }
+        price = forbruk*0.5;
         return price;
     }
 }

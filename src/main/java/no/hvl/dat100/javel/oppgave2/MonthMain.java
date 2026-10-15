@@ -24,6 +24,22 @@ public class MonthMain {
          Remember to teste the methods as you implement them
          Remember to also to check that you get the expected results
          */
+        MonthlyPower.print_PowerUsage(power_usage_month);
+        MonthlyPower.print_PowerPrices(power_prices_month);
+        double totalforbruk = MonthlyPower.computePowerUsage(power_usage_month);
+        System.out.printf("%.2f kWh\n",totalforbruk);
+
+        boolean over = MonthlyPower.exceedThreshold(power_usage_month, 1000);
+        System.out.println(over);
+
+        double totalpris = MonthlyPower.computeSpotPrice(power_usage_month, power_prices_month);
+        System.out.printf("%.2f NOK\n",totalpris);
+
+        double supp = MonthlyPower.computePowerSupport(power_usage_month, power_prices_month);
+        System.out.printf("%.2f NOK\n",supp);
+
+        double norgespris = MonthlyPower.computeNorgesPrice(power_usage_month);
+        System.out.printf("%.2f NOK\n",norgespris);
 
     }
 }

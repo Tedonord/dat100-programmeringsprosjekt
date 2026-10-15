@@ -1,7 +1,6 @@
 package no.hvl.dat100.javel.oppgave1;
 
 import no.hvl.dat100.javel.oppgave2.MonthlyPower;
-import java.lang.reflect.Method;
 
 public class DayMain {
 
