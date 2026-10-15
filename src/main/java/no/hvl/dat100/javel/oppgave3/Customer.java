@@ -40,12 +40,12 @@ public class Customer {
         this.agreement = agreement;
     }
     // TODO - toString method
-    public String toString(Customer cs){
-        String navn = cs.getName();
-        String email = cs.getEmail();
-        int customerid = cs.getCustomerid();
-        PowerAgreementType agreement = cs.getPowerAgreementType();
-        String utskrift = ("Customer number: "+customerid+"\n Navn: "+navn+"\n Email: "+email+"\n Power Agreement: "+agreement);
+    public String toString(){
+        String navn = getName();
+        String email = getEmail();
+        int customerid = getCustomerid();
+        PowerAgreementType agreement = getPowerAgreementType();
+        String utskrift = ("Customer number: "+customerid+"\n Navn: "+navn+"\n Email: "+email+"\n Power Agreement: "+agreement+"\n");
         return utskrift;
     }
 
