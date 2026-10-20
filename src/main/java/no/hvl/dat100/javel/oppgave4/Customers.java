@@ -64,6 +64,7 @@ public class Customers {
         for (int i = 0; i < customers.length;i++){
             if (customers[i] != null){
                 if (customers[i].getCustomerid()==customer_id){
+                    c = customers[i];
                     customers[i] = null;
                     deleted = true;
                     return customers[i];
