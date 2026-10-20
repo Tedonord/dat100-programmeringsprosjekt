@@ -1,6 +1,7 @@
 package no.hvl.dat100.javel.oppgave5;
 
 import no.hvl.dat100.javel.oppgave3.Customer;
+import no.hvl.dat100.javel.oppgave3.PowerAgreementType;
 import no.hvl.dat100.javel.oppgave2.MonthlyPower;
 
 import java.util.Arrays;
@@ -16,20 +17,47 @@ public class Invoice {
 
 
     public Invoice(Customer c, String month, double[][] usage, double[][] power_prices) {
-
-        // TODO - konstruktør
+        this.c = c;
+        this.month = month;
+        this.usage = usage;
+        this.prices = power_prices;
 
     }
 
     public void computeAmount() {
-
-        // TODO
+        PowerAgreementType agreement = c.getPowerAgreementType(); 
+        switch (agreement) {
+            case SPOTPRICE:
+                amount = MonthlyPower.computeSpotPrice(usage, prices);
+                break;
+            case POWERSUPPORT:
+                double support = MonthlyPower.computePowerSupport(usage, prices);
+                amount = MonthlyPower.computeSpotPrice(usage, prices) - support;
+                break;
+            case NORGESPRICE:
+                amount = MonthlyPower.computeNorgesPrice(usage);
+                break;
+            default:
+                System.out.println("Could not find PowerAgreementType");
+                break;
+        }
 
     }
 
     public void printInvoice() {
 
-        // TODO
+        String kunde = c.toString();
+        System.out.printf(kunde);
+        System.out.println();
+
+        System.out.println("Month: "+month);
+
+        double forbruk = MonthlyPower.computePowerUsage(usage);
+        System.out.printf("Usage: %.2f kWh\n",forbruk);
+
+        computeAmount();
+        System.out.printf("Amount: %.2f NOK\n",amount);
+
 
     }
 }
